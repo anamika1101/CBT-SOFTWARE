@@ -417,12 +417,13 @@ When `OPENAI_API_KEY` is configured:
 
 | Name           | Role           | Contact                        |
 |----------------|----------------|--------------------------------|
-| Himanshu Singh | Lead Developer | himanshusingh945443@gmail.com  |
-| Akash Anand    | Co-Developer   | 9765akashanand@gmail.com       |
+| Anamika Kumari | Lead Developer | anamikakumari.workspace@gmail.com  |
+| Anamika gupta    | Co-Developer   |       |
+| Anjali Rai    | Co-Developer   |       |
 
 ---
 
 ## License
 
-Built as a final year Computer Engineering Bachelor's project.
+Built as a final year project.
 All rights reserved © CBT Software.
