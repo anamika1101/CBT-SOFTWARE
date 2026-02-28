@@ -1,0 +1,449 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            table {
+                width:60%;
+                border-collapse: collapse;
+            }
+    
+            table, th, td {
+                border: 1px solid black;
+            }
+    
+            th, td {
+                padding: 3px;
+                text-align: left;
+            }
+            body{
+                margin: 20px;
+                padding: 20px;
+                background-color: aqua;
+            }
+            .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* CSS for the modal content */
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%; /* Adjust the maximum width as needed */
+            background-color: black;
+            padding: 20px;
+            color: white;
+        }
+
+        /* CSS for the close arrow */
+        .close-arrow {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+       <!-- <center><h1> Here, Exam center list and also apply for exam center </h1></center><br><hr> -->
+        
+     <!-- first coloumn --> 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card" style="background-color:#2596be; width:300px; height:120px; padding: 20px 50px;">
+                <div class="card-title">
+                    <a class="stretched-link" href="{% url 'dashboard' %}">
+                        <span style="font-size:10px; font-weight:bold; color:white">Dashboard</span><br>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <span class="fa fa-user" style="color:white; font-size: 30px;"></span>
+                </div>
+            </div>
+        </div>
+        <!-- end first column -->
+
+         <!-- second column start-->
+        <div class="col-md-6 text-right" id="logout">
+            <div class="card" style="background-color:#FF5733; width:300px; height:120px; padding: 20px 50px; margin-left: 100px;">
+                <div class="card-title">
+                    <!-- <a class="stretched-link" href="{% url 'logout' %}"></a> -->
+                    <span style="font-size:10px; font-weight:bold; color:white">Log out</span><br>
+                </div>
+                <div class="card-body">
+                    <span class=" fa fa-sign-out" style="color:white; font-size: 30px;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!--    -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Contact for Exam-Center through mail: </h2>
+            <form>
+                <label for="orgName">Your Organization Name:</label>
+                <input type="text" id="orgName" name="orgName" required><br><br>
+                
+                <label for="examName">Exam Name:</label>
+                <input type="text" id="examName" name="examName" required><br><br>
+                
+                <label for="email">Your-Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="email">Center-Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="contact">Your Contact:</label>
+                <input type="tel" id="contact" name="contact" required><br><br>
+                
+                <label for="query">Query:</label>
+                <textarea id="query" name="query" required rows="4"></textarea><br><br>
+                
+                <input type="submit" value="Submit">
+            </form>
+            <span class="close-arrow" id="closeModal">&times;</span>
+        </div>
+    </div>
+
+    <div class="agileits_w3layouts_more" style="margin-left: 1200px;">
+        <button type="submit" class="btn btn-success h-btn mar-b8 mar-h4 js-tb-signup-anchor" id="signupButton"> Click : Apply for Exam Center</button>
+         
+    </div>
+     
+    <table border="1">
+        <tr>
+            <h2 style="font-size:20px;color:black; margin-left: 20%;">Exam Center List</h2><hr>
+        </tr>
+        <tr>
+            <th>S.id</th>
+            <th>State</th>
+            <th>Center Name</th>
+            <th>Center place</th>
+            <th>contact</th>
+            <th>Email</th>
+             
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Uttarpradesh</td>
+            <td>mohd.computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Uttarpradesh</td>
+            <td>bhaii usman computer wale</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Uttarpradesh</td>
+            <td>Azad computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr><tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr><tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Uttarpradesh</td>
+            <td>Salman computer</td>
+            <td>varansi</td>
+            <td>6204377481</td>
+            <td>anamikakumari.workspace@gmail.com</td> 
+        </tr>
+
+    </table>
+    <script>
+        // JavaScript to show and hide the login modal
+        var loginModal = document.getElementById("loginModal");
+        var signupButton = document.getElementById("signupButton");
+        var closeArrow = document.getElementById("closeModal");
+    
+        signupButton.addEventListener("click", function() {
+            if (loginModal.style.display === "block") {
+                loginModal.style.display = "none";
+            } else {
+                loginModal.style.display = "block";
+            }
+        });
+    
+        closeArrow.addEventListener("click", function() {
+            loginModal.style.display = "none";
+        });
+    
+        window.addEventListener("click", function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+        });
+    </script>
+    <script> var logoutUrl = "{% url 'logout' %}"; </script>
+    <script src="{% static 'js/logout.js' %}"></script>
+</body>
+</html>

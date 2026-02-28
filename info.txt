@@ -1,0 +1,17 @@
+===================================================================
+   how to use this websites ->
+===================================================================
+
+  1. run the command - djangoenv\scripts\activate.bat
+
+------------------------------------------------------------
+  2.  make sure -  mysql should be downloaded 
+      and set the database configuration in setting.py file which is inside cbt folder 
+----------------------------------------------------------
+  3. python manage.py makemigrations
+  4. python manage.py migrate
+------------------------------------------------------------
+  5. python manage.py runserver
+
+
+ 

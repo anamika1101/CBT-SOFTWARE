@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Company Dashboard - CBT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+        <!-- Google fonts - Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <!-- Vendor CSS -->
+        <link rel="stylesheet" href="{% static 'vendor/choices.js/public/assets/styles/choices.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/overlayscrollbars/css/OverlayScrollbars.min.css' %}">
+        <!-- Theme stylesheet -->
+        <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+        <!-- Custom + dashboard overrides -->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <!-- Favicon-->
+        <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    </head>
+    <body>
+        <!-- header file -->      
+        {% include 'com_header.html' %}
+        <!-- header close -->
+
+        <!-- main content -->
+        <div class="page" style="background: linear-gradient(180deg,#020617 0%,#0f172a 40%,#020617 100%); min-height:100vh;">
+            <section style="margin-top:5%; padding: 24px 24px 40px;">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2 class="text-white mb-1">Company Dashboard</h2>
+                            <p class="text-muted mb-0">Create exams, manage centers and monitor performance.</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <!-- Add Test -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card h-100 border-0 shadow-sm" style="background: rgba(15,23,42,.95); border-radius: 18px; transition: transform .2s ease, box-shadow .2s ease;">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;background: rgba(14,165,233,.15);">
+                                            <svg class="svg-icon svg-icon-sm svg-icon-heavy text-info">
+                                                <use xlink:href="#portfolio-grid-1"> </use>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">Add Test</h5>
+                                            <small class="text-muted">Create new online exams</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small mb-3">
+                                        Define exam name, duration, total marks and instructions, then assign it to centers.
+                                    </p>
+                                    <div class="mt-auto">
+                                        <a href="{% url 'addexam' %}" class="btn btn-sm btn-primary w-100">Create Exam</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ongoing Tests -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card h-100 border-0 shadow-sm" style="background: rgba(15,23,42,.95); border-radius: 18px; transition: transform .2s ease, box-shadow .2s ease;">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;background: rgba(52,211,153,.12);">
+                                            <svg class="svg-icon svg-icon-sm svg-icon-heavy text-success">
+                                                <use xlink:href="#clock-1"> </use>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">Ongoing Tests</h5>
+                                            <small class="text-muted">Live & running exams</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small mb-3">
+                                        Track exam start/end time, number of students appeared and current status.
+                                    </p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-success-subtle text-success">Running</span>
+                                        <a href="{% url 'ongoingtests' %}" class="btn btn-sm btn-outline-light">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Completed Tests -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card h-100 border-0 shadow-sm" style="background: rgba(15,23,42,.95); border-radius: 18px; transition: transform .2s ease, box-shadow .2s ease;">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;background: rgba(248,250,252,.06);">
+                                            <svg class="svg-icon svg-icon-sm svg-icon-heavy text-warning">
+                                                <use xlink:href="#imac-screen-1"> </use>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">Completed Tests</h5>
+                                            <small class="text-muted">Finished exam sessions</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small mb-3">
+                                        Review exam date, total students and overall performance across centers.
+                                    </p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-secondary">Completed</span>
+                                        <a href="{% url 'completedtests' %}" class="btn btn-sm btn-outline-light">View Exams</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Results -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card h-100 border-0 shadow-sm" style="background: rgba(15,23,42,.95); border-radius: 18px; transition: transform .2s ease, box-shadow .2s ease;">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;background: rgba(59,130,246,.16);">
+                                            <svg class="svg-icon svg-icon-sm svg-icon-heavy text-info">
+                                                <use xlink:href="#sales-up-1"> </use>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">View Results</h5>
+                                            <small class="text-muted">Exam & center wise analytics</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small mb-3">
+                                        Open detailed result tables with filters by exam, center and student.
+                                    </p>
+                                    <div class="mt-auto">
+                                        <a href="{% url 'completedtests' %}" class="btn btn-sm btn-primary w-100">Open Results</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- You can later add charts or summary widgets below -->
+                </div>
+            </section>
+        </div>
+        <!--main close -->
+
+        <!-- JavaScript files-->
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+        <script src="{% static 'vendor/just-validate/js/just-validate.min.js' %}"></script>
+        <script src="{% static 'vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+        <script src="{% static 'vendor/overlayscrollbars/js/OverlayScrollbars.min.js' %}"></script>
+        <script src="{% static 'js/charts-home.js' %}"></script>
+        <!-- Main File-->
+        <script src="{% static 'js/front.js'%}"></script>
+        <script>
+            function injectSvgSprite(path) {
+                var ajax = new XMLHttpRequest();
+                ajax.open("GET", path, true);
+                ajax.send();
+                ajax.onload = function(e) {
+                    var div = document.createElement("div");
+                    div.className = 'd-none';
+                    div.innerHTML = ajax.responseText;
+                    document.body.insertBefore(div, document.body.childNodes[0]);
+                }
+            }
+            injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+        </script>
+        <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script> var logoutUrl = "{% url 'logout' %}"; </script>
+        <script src="{% static 'js/logout.js' %}"></script>
+    </body>
+</html> 

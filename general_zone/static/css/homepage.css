@@ -1,0 +1,12 @@
+.check{
+    color: blue;
+    background-color: black;
+}
+.tiku{
+    background-color: blueviolet;
+}
+body{
+    /* background-color: rgb(12, 178, 167); */
+    background-image: linear-gradient(to right ,red,yellow,blue);
+    
+}

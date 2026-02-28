@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Add exam</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+        <!-- Google fonts - Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <!-- Choices CSS-->
+        <link rel="stylesheet" href="{% static 'vendor/choices.js/public/assets/styles/choices.min.css' %}">
+        <!-- Custom Scrollbar-->
+        <link rel="stylesheet" href="{% static 'vendor/overlayscrollbars/css/OverlayScrollbars.min.css' %}">
+        
+        <!-- Custom stylesheet - for your changes-->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <!-- Favicon-->
+        <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+        
+    </head>
+    <body>
+        <!-- header file -->      
+        {% include 'com_header.html' %}
+        <!-- header close -->
+
+        <!-- main content -->
+        <div class="page" style="background-color:  #f5deb3;">
+            <section style="margin-top:10%;">
+                <div class="container">
+                    <div class="row "style="margin-top:5%; ">
+                        <div class="col-md-6 offset-md-3 ">
+                            <div class="card mt-3">
+    
+                                <div class="card-header text-white text-center" style="background-color:#99db9fdd;">
+                                    
+                                    <p style="font-weight:bold;font-size:30px;color:#ffffff">Enter Test Details<p>
+                                </div>
+    
+                                <div class="card-body ">
+                                    <form name="form" method="post" action="{% url "saveexam" %}">
+                                        {% csrf_token %}
+    
+                                        <div class="form-group pt-3">
+                                            <input type="text" name="exam_name" class="form-control" id="exam_name" placeholder="Test Name"required>
+    
+                                        </div>
+    
+                                        <div class="form-group pt-3">
+                                            <input type="number" name="no_of_questions" class="form-control" id="no_of_questions"placeholder="No of Questions"required>
+                                        </div>
+    
+                                        <div class="form-group pt-3">
+                                            <input type="text" name="total_marks" class="form-control" id="total_marks" placeholder="Total Marks"required>
+                                        </div>
+    
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button class="btn btn-primary" type="submit" style="color:white;background-color:#65db9f;font-weight:bold;">Submit</button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <button class="btn btn-primary" type="reset" style="color:white;background-color:#65db9f;font-weight:bold;">Reset</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                        
+                                  </div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--main close -->
+
+        <!-- JavaScript files-->
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+        <script src="{% static 'vendor/just-validate/js/just-validate.min.js' %}"></script>
+        <script src="{% static 'vendor/choices.js/public/assets/scripts/choices.min.js'" %}></script>
+        <script src="{% static 'vendor/overlayscrollbars/js/OverlayScrollbars.min.js' %}"></script>
+        <script src="{% static 'js/charts-home.js' %}"></script>
+        <!-- Main File-->
+        <script src="{% static 'js/front.js'%}"></script>
+        <script>
+            function injectSvgSprite(path) {
+            
+                var ajax = new XMLHttpRequest();
+                ajax.open("GET", path, true);
+                ajax.send();
+                ajax.onload = function(e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+                }
+            }
+            injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+        </script>
+        <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    </body>
+</html> 
+                

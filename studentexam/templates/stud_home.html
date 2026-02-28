@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" , initial-scale=1.0, maximum-scale=1.0, user-scalable="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>CBT</title>
+        <meta name="keywords" content="">
+        <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/cs.css' %}" />   -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />  
+        <link type="text/css" rel="stylesheet" href="{% static 'css/stylearea.default.css' %}"/>    
+    </head>
+    <body>   
+        <div id="all">
+            <!-- top menu barr -->    
+            <div class="top-bar">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="top-links">
+                            <ul>
+                                <li class=""> Do not back or refresh the page. </li>
+                                <li class="">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div> 
+            <div>
+                <div id="heading-breadcrumbs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8  col-sm-12">
+                                <div class="table-responsive">
+                                    <table>
+                                        <tr>
+                                            <!-- <td style="padding: 5px 15px;border:2px solid #666"> -->
+                                                <!-- <i class="fa fa-laptop fa-4x"></i> -->
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td style="padding: 5px 5px;">System Name : <span style="color: black; font-weight: bold">[C0001]</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px 5px;"><span style="color: black; font-weight: bold">[Contact Invigilator if the Name and Exam Name displayed on the screen is not yours]</span></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="table-responsive">
+                                    <table>
+                                        <tr>
+                                            <!-- <td style="padding: 5px 15px;border:2px solid #666"> -->
+                                                <!-- <img src="{% static 'img/Himanshu.jpeg' %}" alt="" width="60px"> -->
+                                                <!-- <i class="fa fa-user fa-4x"></i> -->
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td style="padding: 5px 5px;">Candidate Name</td>
+                                                        <td> : <span style="color: black; font-weight: bold">[Anamika Kumari]</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px 5px;">Exam Name</td>
+                                                        <td> : <span style="color: black; font-weight: bold">[KIT Exam]</span></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quiz-carousel">
+                        <div class="area-quiz">
+                            <div id="content">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <div class="quiz-box">
+                                                <h4>KIT EXAM</h4>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label>Username</label>
+                                                    <input id="txtUsername" disabled placeholder="200428153003" type="text" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input id="txtPassword"  placeholder="Type your username" type="password" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <a class="btn btn-primary btn-block btn-lg" id="btnLogin" href="{% url 'instruction' %}">Login</a>
+                                                    <h6 style="text-align:center; color:black;">Click Login To proceed</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

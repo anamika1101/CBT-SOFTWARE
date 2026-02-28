@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Exam Panel</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+  <link rel="stylesheet" href="{% static 'css/run.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+   <style>
+    body{
+      background-image: url("{% static 'img/exampic.jpg' %}");
+    }
+    .profile-photo {
+    background-image: url("{% static 'css/photogrid.jpg' %}");
+  }
+   </style>
+</head>
+<body>
+     
+  <div class="container1">
+    <div class="container10">
+        <div class="box">DSA</div>
+        <div class="box">Operating System</div>
+        <div class="box">Computer Network</div>
+        <div class="box">Coding</div>
+        <div class="box">Aptitide</div>
+      </div>
+    
+    <div class="header">
+      <!-- <h1>Student Exam Panel</h1> -->
+      <header>
+        <ul class="header-menu">
+          <li>Exam name: TCS NQT |</li>
+          <li>Candidate Name: Anamika Kumari</li>
+          <div id="timer">1h 0m 0s</div>
+        </ul>
+        <div class="profile-photo"></div>
+      </header>
+       
+    </div>
+    <div class="question-container">
+       
+      <div class="question">
+        <div id="question1">
+          <!-- <p class="question-number">Question 1:</p> -->
+          <!-- <p>What is 2 + 2?</p> -->
+          <div id="question-container">
+            <p id="question-text">Loading question...</p>
+            <ul>
+                <li><input type="radio" id="option1" name="answer"><label for="option1"></label></li>
+                <li><input type="radio" id="option2" name="answer"><label for="option2"></label></li>
+                <li><input type="radio" id="option3" name="answer"><label for="option3"></label></li>
+                <li><input type="radio" id="option4" name="answer"><label for="option4"></label></li>
+            </ul>
+            <!-- <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button> -->
+        </div>
+        </div><!-- Add more questions and answers here -->
+      </div>
+       <!-- conatain option selection for the question -->
+     
+
+    <!-- this contain selection for the question -->
+    </div>
+    <div class="button-container">
+      <button onclick="markview()">Mark for Review & Next</button>
+      <button>Clear Response</button>
+      <button id="prev-button">Previous</button>
+      <button id="next-button">Save and Next</button>
+    </div>
+  </div>
+
+  <!-- question design -->
+  <div class="col-md-4" id="pallette"  style="position: fixed; top: 10px; right: 10px;  ">
+    <div class="panel panel-body panel-default mb0 mt10" style="border: 3px dotted; padding: 10px;">
+        <div class="table-responsive">
+            <table class="table table-borderless mb0">
+                <thead>
+                    <tr>
+                        
+                        <td class="full-width">  <img src="{% static 'img/Logo3.png' %}" alt=""> </td>
+                        <td>Answered</td>
+                        <td class="full-width">  <img src="{% static 'img/Logo2.png' %}" alt=""> </td>
+                        <td>Not Answered</td>
+                    </tr>
+                    <tr>
+                        <td class="full-width">  <img src="{% static 'img/Logo1.png' %}" alt=""></td>
+                        <td>Not Visited</td> 
+                        <td class="full-width">  <img src="{% static 'img/Logo4.png' %}" alt="">  </td>
+                        <td>Marked for Review</td>
+                    </tr>
+                    <tr>
+                        <td>  <img src="{% static 'img/Logo5.png' %}" alt=""></td>
+                        <td colspan="3">Answered &amp; Marked for Review (will be considered for evaluation)</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>   
+</div>
+<!-- question desgin ended -->
+
+ <!-- showing question boxex start -->
+ 
+     <div class="container">
+         <div class="row exam-paper">
+            <div class="col-md-4" id="pallette"  style="position: fixed; bottom: -200px; right: 10px;  height: 80vh; overflow-y: auto;">    
+                 <!-- <div class="panel panel-default "> -->
+                     <div class="panel-body "  style="border: 3px dotted;">
+                          <ul class="pagination test-questions"  style="border: 1px dotted;">
+                      <li class="active" data-seq="1"><a class="test-ques que-not-answered " href="javascript:void(0);" data-href="page01">01</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page02">02</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page03">03</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page04">04</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page05">05</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page06">06</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page07">07</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page08">08</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page09">09</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page10">10</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page11">11</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page12">12</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page13">13</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page14">14</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page15">15</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page16">16</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page17">17</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page18">18</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page19">19</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page20">20</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page21">21</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page22">22</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page23">23</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page24">24</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page25">25</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page26">26</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page27">27</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page28">28</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page29">29</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page30">30</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page31">31</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page32">32</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page33">33</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page34">34</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page35">35</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page36">36</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page37">37</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page38">38</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page39">39</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page40">40</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page41">41</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page42">42</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page43">43</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page44">44</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page45">45</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page46">46</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page47">47</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page48">48</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page49">49</a></li>
+                      <li class="" data-seq="1"><a class="test-ques que-not-attempted " href="javascript:void(0);" data-href="page50">50</a></li>
+                     
+
+                </ul>
+            </div>
+        </div>
+     </div>
+</div>
+<button  style="cursor: pointer; position: fixed; bottom: 50px; right: 30px; padding: 10px; background-color: #007BFF" onclick="confirmSubmit()">Submit</button>  
+<!-- showing question boxes -->
+<script>
+    var submitUrl = "{% url 'over' %}";
+</script>
+<script src="{% static 'js/c.js' %}"></script>
+<script>    
+function confirmSubmit() {
+  const userConfirmed = confirm("Are you sure you want to submit the exam ?");
+  if (userConfirmed) {
+    window.location.href =  submitUrl;  
+  }
+}
+function markview()
+    {
+        alert("sorry for the inconvience !! this button is under maintenence,");
+    } 
+</script>  
+ <!-- timer code for starting the exam -->
+
+    <script>
+        // var endTime = new Date("{{ end_time }}");
+        var endTime = new Date();
+        endTime.setMinutes(endTime.getMinutes() + 30);
+        function updateTimer() {
+            var currentTime = new Date();
+            var timeLeft = endTime - currentTime;
+
+            if (timeLeft <= 0) {
+                document.getElementById("timer").textContent = "Time's up!";
+                clearInterval(timerInterval);
+            } else {
+                var hours = Math.floor(timeLeft / 3600000);
+                var minutes = Math.floor((timeLeft % 3600000) / 60000);
+                var seconds = Math.floor((timeLeft % 60000) / 1000);
+
+                document.getElementById("timer").textContent = "Time left: " + hours + "h " + minutes + "m " + seconds + "s";
+            }
+        }
+        updateTimer();  // Call once to display the initial time
+        var timerInterval = setInterval(updateTimer, 1000);  // Update the timer every second
+    </script>
+    <!-- timer code ended -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125433287-1"></script> 
+</body>
+</html>

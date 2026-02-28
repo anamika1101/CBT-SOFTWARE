@@ -1,0 +1,272 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head_common.html" %}
+    <title>Courses - CBT</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+  </head>
+  <body class="modern-ui">
+    <!--  header body  -->
+    {% include "header.html" %}
+    <!--  header close  -->
+
+    <!--courses body-->
+
+    <section id="popular-courses" class="courses mt-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <!-- <h2>Courses</h2> -->
+          <p class="color-primary">Our Popular Courses</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item">
+              <img
+                src="{% static 'assets/img/webd.jpg' %}"
+                class="img-fluid"
+                alt="..."
+              />
+              <div class="course-content">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h4>Web Development</h4>
+                  <!-- <p class="price">500</p> -->
+                </div>
+
+                <h3><a href="">Website Design</a></h3>
+                <p>
+                  HTML, CSS, and JavaScript to create web pages, layout, and
+                  user interfaces.Full-stack developers are proficient in both
+                  front-end and back-end development. They can build and
+                  maintain entire web applications independently.
+                </p>
+                <div
+                  class="trainer d-flex justify-content-between align-items-center"
+                >
+                  <div class="trainer-profile d-flex align-items-center">
+                    <!-- <img src="{% static 'assets/img/webd.jpg' %}" class="img-fluid" alt=""> -->
+                    <span>Full Stack Developer</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <!-- <i class="bx bx-user"></i>&nbsp;50 -->
+                    &nbsp;&nbsp;
+                    <!-- <i class="bx bx-heart"></i>&nbsp;65 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Course Item-->
+
+          <div
+            class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+          >
+            <div class="course-item">
+              <img
+                src="{% static 'assets/img/dsa.png' %}"
+                class="img-fluid"
+                alt="..."
+              />
+              <div class="course-content">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h4>Data Structure and Algorithms</h4>
+                  <!-- <p class="price">$5</p> -->
+                </div>
+
+                <h3><a href="">Improve Logic building </a></h3>
+                <p>
+                  Data structures are a fundamental concept in computer science
+                  and programming. They are used to organize and store data in a
+                  way that allows for efficient retrieval, insertion, and
+                  manipulation of that data.
+                </p>
+                <div
+                  class="trainer d-flex justify-content-between align-items-center"
+                >
+                  <div class="trainer-profile d-flex align-items-center">
+                    <!-- <img src="{% static 'assets/img/trainers/trainer-2.jpg' %}" class="img-fluid" alt=""> -->
+                    <span>Competitive Programmer</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <!-- <i class="bx bx-user"></i>&nbsp;35
+                        &nbsp;&nbsp;
+                        <i class="bx bx-heart"></i>&nbsp;42 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Course Item-->
+
+          <div
+            class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+          >
+            <div class="course-item">
+              <img
+                src="{% static 'assets/img/ml.jpg' %}"
+                class="img-fluid"
+                alt="..."
+              />
+              <div class="course-content">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h4>Machine Learning</h4>
+                  <!-- <p class="price">$180</p> -->
+                </div>
+
+                <h3><a href="">Predictive Models</a></h3>
+                <p>
+                  Machine Learning focuses on the development of algorithms and
+                  statistical models that enable computer systems to improve
+                  their performance on a specific task through learning from
+                  data, without being explicitly programmed.
+                </p>
+                <div
+                  class="trainer d-flex justify-content-between align-items-center"
+                >
+                  <div class="trainer-profile d-flex align-items-center">
+                    <!-- <img src="{% static 'css/tt.jpg' %}" class="img-fluid" alt=""> -->
+                    <span>Machine Learning Engineer</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Course Item-->
+        </div>
+      </div>
+    </section>
+    <section class="about main">
+        <div class="container mt-2">
+      <header>
+        <h1  class="color-primary">Web Development Courses</h1>
+        <p>Unlock Your Potential in Web Development</p>
+      </header>
+
+      <section id="intro">
+        <h2  class="color-primary">About Our Courses</h2>
+        <p>
+          Welcome to our comprehensive web development courses, where the future
+          of the digital world begins. In today's tech-driven era, web
+          development is a vital skill that opens doors to exciting
+          opportunities. Whether you are looking to kickstart your career,
+          upgrade your existing skills, or simply explore the world of web
+          development, our courses are designed to empower you with the
+          knowledge and tools needed to succeed in the ever-evolving field of
+          web development.
+        </p>
+      </section>
+
+      <section id="courses">
+        <h2  class="color-primary">Our Courses</h2>
+        <p>
+          Our diverse range of courses covers a wide spectrum of web development
+          topics:
+        </p>
+        <ul>
+          <li>
+            **Web Development Essentials**: Dive into the core building blocks
+            of the web, including HTML and CSS fundamentals. Learn how to
+            structure web pages, apply styles, and create responsive designs.
+            Perfect for beginners.
+          </li>
+
+          <li>
+            **JavaScript Mastery**: Explore the world of JavaScript, one of the
+            most popular programming languages. Discover how to create dynamic
+            and interactive web experiences. You'll delve into DOM manipulation,
+            event handling, and more.
+          </li>
+
+          <li>
+            **Frontend Frameworks**: Get hands-on experience with popular
+            frontend frameworks like React, Angular, and Vue.js. Learn how to
+            build robust and responsive user interfaces that engage and
+            captivate your audience.
+          </li>
+
+          <li>
+            **Backend Development**: Unlock the world of server-side development
+            using Node.js and Python. Build the backend logic and data
+            management for web applications, and understand RESTful APIs.
+          </li>
+
+          <li>
+            **Database Management**: Master the art of database design and
+            management. Explore both SQL and NoSQL databases, and learn how to
+            ensure data integrity and optimize performance.
+          </li>
+
+          <li>
+            **Responsive Web Design**: Understand the importance of responsive
+            web design and mobile development. Learn how to create websites that
+            adapt seamlessly to various screen sizes and devices.
+          </li>
+
+          <li>
+            **Security Best Practices**: Safeguard your web applications with
+            security best practices. Explore common security vulnerabilities and
+            how to protect your websites and user data.
+          </li>
+
+          <li>
+            **Full-Stack Development**: Bring it all together with full-stack
+            development. Combine frontend and backend skills to create complete
+            web applications from start to finish.
+          </li>
+        </ul>
+      </section>
+
+      <section id="instructors">
+        <h2  class="color-primary">Meet Our Instructors</h2>
+        <p>
+          Our dedicated team of experienced instructors is committed to
+          providing you with expert guidance and support throughout your
+          learning journey. Our instructors have real-world experience and are
+          passionate about sharing their knowledge with you. Learn from the best
+          in the field and gain valuable insights into the world of web
+          development.
+        </p>
+      </section>
+
+      <section id="enroll">
+        <h2  class="color-primary">Enroll Now</h2>
+        <p>
+          Ready to take the next step in your web development career? Join our
+          courses today and start building the future you envision. Unlock
+          opportunities, expand your knowledge, and embark on an exciting web
+          development journey with us.
+        </p>
+      </section>
+        </div>
+    </section>
+
+    <div id="preloader"></div>
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+    >
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Footer body   -->
+    {%include "footer.html" %}
+    <!-- Footer close  -->
+  </body>
+</html>

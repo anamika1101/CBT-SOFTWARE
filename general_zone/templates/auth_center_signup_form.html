@@ -1,0 +1,401 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head_common.html" %}
+    <title>Center Signup - CBT</title>
+    <style>
+        :root {
+            --primary-color: #1e5a96;
+            --primary-light: #2d7ab8;
+            --secondary-color: #28a745;
+            --light-bg: #ecf0f4;
+            --border-color: #ddd;
+            --text-dark: #333;
+            --text-muted: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-bg);
+            min-height: 100vh;
+        }
+
+        .signup-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .signup-sidebar {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .signup-sidebar-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 48px;
+            backdrop-filter: blur(10px);
+        }
+
+        .signup-sidebar h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .signup-sidebar p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .sidebar-features {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-features h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .sidebar-features ul {
+            list-style: none;
+        }
+
+        .sidebar-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-features li:before {
+            content: "✓";
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 16px;
+        }
+
+        .signup-form-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .signup-form-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 50px;
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .form-header {
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px 16px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: white;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateX(-3px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 90, 150, 0.1);
+            background-color: rgba(30, 90, 150, 0.02);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(30, 90, 150, 0.3);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(30, 90, 150, 0.4);
+        }
+
+        .btn-signup:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 12px;
+            position: relative;
+        }
+
+        .form-footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .form-footer a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid;
+        }
+
+        .alert-danger {
+            background: #ffe6e6;
+            color: #c00;
+            border-color: #ffcccc;
+        }
+
+        .alert-success {
+            background: #e6f7e6;
+            color: #006600;
+            border-color: #ccffcc;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                flex-direction: column;
+            }
+
+            .signup-sidebar {
+                padding: 40px 30px;
+                min-height: auto;
+            }
+
+            .signup-sidebar-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 36px;
+            }
+
+            .signup-sidebar h1 {
+                font-size: 24px;
+            }
+
+            .signup-form-section {
+                padding: 30px 20px;
+            }
+
+            .signup-form-card {
+                padding: 30px;
+                max-width: 100%;
+            }
+
+            .form-header h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-sidebar">
+            <div class="signup-sidebar-logo">
+                <i class="fas fa-building"></i>
+            </div>
+            <h1>Join as Center</h1>
+            <p>Register your center and start managing exams today</p>
+            <div class="sidebar-features">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Quick Registration</li>
+                    <li>Instant Activation</li>
+                    <li>Full Dashboard Access</li>
+                    <li>24/7 Support</li>
+                    <li>No Setup Charges</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="signup-form-section">
+            <div class="signup-form-card">
+                <a href="{% url 'homepage' %}" class="back-button">
+                    <i class="fas fa-arrow-left"></i>Back
+                </a>
+
+                <div class="form-header">
+                    <h2>Create Center Account</h2>
+                    <p>Register your center to get started</p>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Center Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your center name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="center@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="10 digit number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn-signup">Create Account</button>
+                </form>
+
+                <div class="divider">
+                    <span>Already registered?</span>
+                </div>
+
+                <div class="form-footer">
+                    <a href="{% url 'center_login_page' %}">Sign in here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.bg-primary{
+    background-color: #18d26fea!important;
+}
+
+.bg-yellow{
+    background-color: #cccc00;
+}
+
+.bg-white{
+    background-color: #ffffff40;
+}
+
+.bg-red{
+    background-color: #ff000487;
+}
+  
+.color-primary{
+    color: #18d26e!important;
+}
+
+.font-primary{
+    font-size: 20px;
+}
+
+.font-white{
+    color:rgba(255, 255, 255, 0.972);
+}
+
+.bold{
+    font-weight: bold;
+}
+.center{
+    text-align: center;
+    align-items: center;
+}

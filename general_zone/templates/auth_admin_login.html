@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head_common.html" %}
+    <title>Admin Login - CBT</title>
+  </head>
+  <body class="modern-ui">
+    {% include "header.html" %}
+
+    <section class="about main" style="background: var(--cbt-gradient-dark); padding: 100px 0 80px;">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="auth-modal" style="position:relative; max-width: 480px; margin:0 auto;">
+              <h2>Admin Login</h2>
+              <p class="auth-modal-subtitle">System controller access.</p>
+              <form method="post" action="{% url 'adminlogin' %}">
+                {% csrf_token %}
+                <div class="auth-input-group">
+                  <label for="login_email_admin">Email</label>
+                  <input type="email" id="login_email_admin" name="email" placeholder="admin@example.com" required>
+                </div>
+                <div class="auth-input-group">
+                  <label for="login_password_admin">Password</label>
+                  <input type="password" id="login_password_admin" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn-primary">Sign In</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="card" style="background: var(--cbt-bg-glass); border:1px solid var(--cbt-border); border-radius:20px;">
+              <div class="card-body" style="color: var(--cbt-text);">
+                <h4 class="mb-3" style="color: var(--cbt-primary-light);">Admin Dashboard Powers</h4>
+                <ul style="color: var(--cbt-text-muted);">
+                  <li>Approve / Block centers</li>
+                  <li>Manage all users & roles</li>
+                  <li>Control exam schedules</li>
+                  <li>System-wide reports & logs</li>
+                  <li>Global system configuration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include "footer.html" %}
+  </body>
+</html>
+

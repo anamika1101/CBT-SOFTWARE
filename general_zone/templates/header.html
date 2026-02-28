@@ -1,0 +1,246 @@
+{% load static %}
+<!-- Header fragment: nav, modals, scripts - no document wrapper -->
+        <header id="header" class="fixed-top">
+            <div class="container  d-flex align-items-center">
+                <!-- <img class="logo me-auto" src= "{% static 'assets/img/cbt_logo.png' %}" style="width:250px;height:50px;" alt="logo"> -->
+                <a href="/">
+                    <img class="logo me-auto" src="{% static 'images/cbt_logo.png' %}" style="width:250px; height:50px;"
+                        alt="logo">
+                </a>
+    
+                <nav id="navbar" class="navbar order-last order-lg-0" style="margin-left: 10%;">
+                    <ul>
+                        <li><a class="active" href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="#" id="loginOpenBtn">Login</a></li>
+                        <li><a href="{% url 'courses' %}">Courses</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'centerlist' %}">Center list</a></li>
+                        <li><a href="#" id="contactbutton" class="contact-trigger">Demo</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+                <!-- .navbar -->
+                <a href="#" id="registerOpenBtn" class="get-started-btn">Create Account</a>
+            </div>
+        </header><!-- End Header -->
+
+        <!-- Login Modal - Role selection -->
+        <div class="auth-modal-overlay" id="loginModalOverlay">
+            <div class="auth-modal" style="position: relative;">
+                <button type="button" class="auth-modal-close" id="closeLoginModal" aria-label="Close">&times;</button>
+                <h2>Sign in as</h2>
+                <p class="auth-modal-subtitle">Choose your role to continue</p>
+
+                <div class="auth-role-tabs" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;">
+                    <button class="auth-role-tab active" onclick="window.location.href='{% url 'company_login_page' %}'">Company Login</button>
+                    <button class="auth-role-tab" onclick="window.location.href='{% url 'center_login_page' %}'">Center Login</button>
+                    <button class="auth-role-tab" onclick="window.location.href='{% url 'admin_login_page' %}'">Admin Login</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Account / Register Modal -->  
+        <div class="auth-modal-overlay" id="registerModalOverlay">
+            <div class="auth-modal" style="position: relative; max-width: 460px;">
+                <button type="button" class="auth-modal-close" id="closeRegisterModal" aria-label="Close">&times;</button>
+                <h2>Create Account</h2>
+                <p class="auth-modal-subtitle">Register once - use the same credentials for Company, Center & Admin</p>
+                <form id="com_form" method="post">
+                    {% csrf_token %}
+                    <div id="com_result" class="auth-input-group" style="display:none; margin-bottom:16px; padding:12px; border-radius:12px; text-align:center;"></div>
+                    <div class="auth-input-group">
+                        <label for="com_signup_name">Organization Name</label>
+                        <input type="text" name="name" id="com_signup_name" placeholder="Your company or organization" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="com_signup_phone">Phone</label>
+                        <input type="tel" name="phone" id="com_signup_phone" placeholder="+1 234 567 8900" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="com_signup_email">Email address</label>
+                        <input type="email" name="email" id="com_signup_email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="com_signup_password">Password</label>
+                        <input type="password" name="password" id="com_signup_password" placeholder="********" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="com_signup_cpassword">Confirm Password</label>
+                        <input type="password" name="cpassword" id="com_signup_cpassword" placeholder="********" required>
+                    </div>
+                    <button type="submit" class="auth-btn-primary">Create Account</button>
+                    <div class="auth-switch">
+                        Already have an account? <a href="#" id="registerToLogin">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- ended sign up code  of company login -->
+
+        <!-- Demo / Contact popup -->
+        <div class="auth-modal-overlay" id="contactModalOverlay">
+            <div class="auth-modal" style="position: relative; max-width: 460px;">
+                <button type="button" class="auth-modal-close" id="closecontact" aria-label="Close">&times;</button>
+                <h2>Request Demo</h2>
+                <p class="auth-modal-subtitle">We'll reach out to schedule your personalized demo</p>
+                <form id="contact_form" method="post">
+                    {% csrf_token %}
+                    <div id="contact_result" class="auth-input-group" style="display:none; margin-bottom:16px; padding:12px; border-radius:12px; text-align:center;"></div>
+                    <div class="auth-input-group">
+                        <label for="contact_name">Your Name</label>
+                        <input type="text" name="contact_name" id="contact_name" placeholder="John Doe" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="contact_email">Email</label>
+                        <input type="email" name="contact_email" id="contact_email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="contact_phone">Phone</label>
+                        <input type="tel" name="contact_phone" id="contact_phone" placeholder="+1 234 567 8900" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="contact_organization">Organization</label>
+                        <input type="text" name="contact_organization" id="contact_organization" placeholder="Your company" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="contact_message">Message</label>
+                        <textarea name="contact_message" id="contact_message" rows="4" placeholder="Tell us about your needs..." required style="width:100%; padding:14px 18px; border-radius:12px; border:1px solid var(--cbt-border); background:var(--cbt-bg-glass); color:var(--cbt-text); resize:vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="auth-btn-primary">Request Demo</button>
+                </form>
+            </div>
+        </div>
+
+        <!--  JS CODE FOR POPUP -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const loginOverlay = document.getElementById('loginModalOverlay');
+                const registerOverlay = document.getElementById('registerModalOverlay');
+                const contactOverlay = document.getElementById('contactModalOverlay');
+
+                function openModal(el) { el.classList.add('active'); document.body.style.overflow = 'hidden'; }
+                function closeModal(el) { el.classList.remove('active'); document.body.style.overflow = ''; }
+
+                function openLogin() { closeModal(registerOverlay); closeModal(contactOverlay); openModal(loginOverlay); }
+                document.getElementById('loginOpenBtn')?.addEventListener('click', function(e) { e.preventDefault(); openLogin(); });
+                document.getElementById('heroLoginBtn')?.addEventListener('click', function(e) { e.preventDefault(); openLogin(); });
+                document.getElementById('registerOpenBtn')?.addEventListener('click', function(e) { e.preventDefault(); closeModal(loginOverlay); closeModal(contactOverlay); openModal(registerOverlay); });
+                document.querySelectorAll('.contact-trigger').forEach(function(el) { el.addEventListener('click', function(e) { e.preventDefault(); closeModal(loginOverlay); closeModal(registerOverlay); openModal(contactOverlay); }); });
+
+                document.getElementById('closeLoginModal')?.addEventListener('click', function() { closeModal(loginOverlay); });
+                document.getElementById('closeRegisterModal')?.addEventListener('click', function() { closeModal(registerOverlay); });
+                document.getElementById('closecontact')?.addEventListener('click', function() { closeModal(contactOverlay); });
+
+                document.getElementById('loginToRegister')?.addEventListener('click', function(e) { e.preventDefault(); closeModal(loginOverlay); openModal(registerOverlay); });
+                document.getElementById('registerToLogin')?.addEventListener('click', function(e) { e.preventDefault(); closeModal(registerOverlay); openLogin(); });
+
+                loginOverlay?.addEventListener('click', function(e) { if (e.target === loginOverlay) closeModal(loginOverlay); });
+                registerOverlay?.addEventListener('click', function(e) { if (e.target === registerOverlay) closeModal(registerOverlay); });
+                contactOverlay?.addEventListener('click', function(e) { if (e.target === contactOverlay) closeModal(contactOverlay); });
+            });
+        </script>
+
+        <!--  AJAX CODE FOR DATA SUBMITION -->
+        <script>
+            //CODE TO HANDLE CSRF_TOKEN
+            function getCookie(name) {               
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                  var cookies = document.cookie.split(';');
+                  for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Search for the CSRF token cookie
+                    if (cookie.substring(0, name.length + 1) === name + '=') {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                    }
+                  }
+                }
+                return cookieValue;
+            }
+            // AJAX FOR COMPANY SIGNUP DATA...
+            $(document).ready(function() {
+                $("#com_form").submit(function(event) {
+                    event.preventDefault();
+                    if ($("#com_signup_cpassword").val() != $("#com_signup_password").val()) {
+                        $("#com_result").html("Password and Confirm password do not match").css("color", "#ef4444");
+                        $("#com_result").show();
+                        return;
+                    }
+                    var formData = {
+                        com_signup_name: $("#com_signup_name").val(),
+                        com_signup_phone: $("#com_signup_phone").val(),
+                        com_signup_email: $("#com_signup_email").val(),
+                        com_signup_password: $("#com_signup_password").val(),
+                    };
+                
+                    // Get the CSRF token
+                    var csrftoken = getCookie('csrftoken');
+                
+                    
+                    $.ajax({
+                        url: '/comsignup/',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $("#com_result").html("Registered successfully! Please sign in to continue.").css("color", "#10b981");
+                                $("#com_result").show();
+                                $("#com_form")[0].reset();
+                            } else {
+                                var msg = (response.error || "Something went wrong. Please try again.");
+                                $("#com_result").html(msg).css("color", "#ef4444");
+                                $("#com_result").show();
+                            }
+                        }
+                    });
+                });
+            });
+
+            // AJAX FOR CONTACT DATA...
+            $(document).ready(function() {
+                $("#contact_form").submit(function(event) {
+                    event.preventDefault(); 
+
+                    var formData = {
+                    contact_name: $("#contact_name").val(),
+                    contact_email: $("#contact_email").val(),
+                    contact_phone: $("#contact_phone").val(),
+                    contact_organization: $("#contact_organization").val(),
+                    contact_message: $("#contact_message").val(),
+                    };
+                
+                    // Get the CSRF token
+                    var csrftoken = getCookie('csrftoken');
+                
+                    
+                    $.ajax({
+                        url: '/requestdemo/',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        success: function(response) {
+                            // Handle the response from the Django view
+                            if (response.success) {
+                                $("#contact_result").html("Request sent Succesfully<br/><h5> We will reach you soon...</h5>")
+                                $("#contact_result").css("color", "#00ff00");
+                                $("#contact_form")[0].reset();
+                            } else {
+                                $("#contact_result").html("Something went Wrong!!!")
+                                $("#contact_result").css("color", "red");                                
+                            }
+                            $("#contact_result").show()
+                        }
+                    });
+                });
+            });
+              
+        </script>

@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head_common.html" %}
+    <title>Services - CBT</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+  </head>
+  <body class="modern-ui">
+    <!--  header body  -->
+    {% include "header.html" %}
+
+    <!-- <section id="heros"  class="d-flex justify-content-center align-items-center mt-5">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+            <h1 >Our services ,<br>our Center-based online test software establish a test centre at your own school/colleges/coaching centres/corporate campus.</h1>
+            <h2 >Welcome TO  CBT software. Conduct your Exam in online mode.</h2>
+        </div>
+    </section> -->
+    <!--  header close  -->
+    <section class="about main" style="background: var(--cbt-gradient-dark); padding: 80px 0 60px;">
+      <div class="container-fluid">
+        <div class="row pb-5 font-primary align-items-center">
+          <div class="col-sm-12 col-lg-5 mb-4 mb-lg-0">
+            <div class="card" style="background: var(--cbt-bg-glass); border: 1px solid var(--cbt-border); border-radius: 20px;">
+              <div class="card-body p-4" style="color: var(--cbt-text);">
+                <h3 class="card-title mb-3" style="color: var(--cbt-primary-light);">
+                  Computer-based Test Software To Secure Online Test
+                </h3>
+                <p class="text-justify">
+                  CBT Software is one of the most powerful computer-based test
+                  programs. Our platform offers a user-friendly interface for
+                  both test-takers and administrators. The software ensures a
+                  seamless testing experience. The computer test software is
+                  accessible from anywhere at any time. We also provide the ideal solution for
+                  educational institutions, corporations, and certification
+                  providers. Our software ensures quick and precise exams,
+                  saving valuable time and resources. Administrators of CBT
+                  exams have complete control over the creation of online
+                  practice quizzes.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-lg-7">
+            <div style="border-radius: 20px; overflow: hidden; border: 1px solid var(--cbt-border);">
+            <img src="{% static 'images/services1.jpg' %}" style="max-width: 100%; height: auto; display: block;" alt="CBT Services">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--contact body-->
+
+    <div id="preloader"></div>
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+    >
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Footer body   -->
+    {%include "footer.html" %}
+    <!-- Footer close  -->
+  </body>
+</html>

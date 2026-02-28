@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Exam Centers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- Choices CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/choices.js/public/assets/styles/choices.min.css' %}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'vendor/overlayscrollbars/css/OverlayScrollbars.min.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'static/css/main.css' %}">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Favicon-->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+     
+     
+
+
+</head>
+        {% include "com_header.html" %}
+        <div class="page">-
+            <!-- Table data -->
+            <div class="container offset-md-1" id="centers_table">
+               
+                <div class="row p-1"style="margin-top:10%;" >
+                    <table class="table table-bordered table-success" style="width: 85%;">
+                        <thead> 
+                            <tr>
+                                <h2 style="font-size:30px;color:#ff216f;margin-left: 30%;">Exam Centers List</h2>
+                            </tr>                          
+                            <tr>
+                                <th scope="col">Center code</th>
+                                <th scope="col">Center Name</th>
+                                <th scope="col">Address</th>  
+                                <th scope="col">Mobile No.</th>
+                                <th scope="col">Email Id</th>
+                                <th scope="col">Password</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for center in centers %}
+                                    <tr>
+                                        <td>{{ center.id }}</td>
+                                        <td>{{ center.center_name }}</td>
+                                        <td>{{ center.address }}</td>
+                                        <td>{{ center.phone }}</td>
+                                        <td>{{ center.email }}</td>
+                                        <td>{{ center.password }}</td>
+                                        <td><a href="#" style="color: red;"><button class="btn btn-outline-danger">Delete</button></a></td>
+                                    </tr>
+                            {% endfor %}
+
+                        </tbody>                            
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-outline-danger" id="add_center_btn" >Add Center</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add a center -->
+        <div class="container" id="add_center_form" style="display:none;">
+            <div class="row " style="margin-top:5%; ">
+                <div class="col-md-6 offset-md-3 ">
+                    <div class="card mt-3">
+
+                        <div class="card-header text-white text-center" style="background-color:#99db9fdd;">
+
+                            <p style="font-weight:bold;font-size:30px;color:#ffffff">Enter Center Details
+                            <p>
+                        </div>
+
+                        <div class="card-body ">
+                            <form name="form" method="post" action="{% url 'addcenter'  %}">
+                                {% csrf_token %}
+                                <div class="form-group pt-3">
+                                    <input type="text" name="center_name" class="form-control" id="center_name"
+                                        placeholder="Center Name" required>
+
+                                </div>
+
+                                <div class="form-group pt-3">
+                                    <input type="text" name="address" class="form-control" id="address"
+                                        placeholder="Address" required>
+                                </div>
+
+                                <div class="form-group pt-3">
+                                    <input type="text" name="phone" class="form-control" id="phone"
+                                        placeholder="Phone No" required>
+                                </div>
+
+                                <div class="form-group pt-3">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="Email address" required>
+                                </div>
+
+                                <div class="form-group pt-3">
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        placeholder="Password" required>
+                                </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-primary" type="submit" id="submit" style="color:white;background-color:#65db9f;font-weight:bold;">Submit</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-primary" type="reset" style="color:white;background-color:#65db9f;font-weight:bold;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!--main close -->
+
+        <script>
+            document.getElementById("add_center_btn").addEventListener("click", function() {
+                var hiddenContent = document.getElementById("add_center_form");
+                var centers_table = document.getElementById("centers_table");
+                if (hiddenContent.style.display === "none") {
+                    centers_table.style.display = "none";
+                    hiddenContent.style.display = "block";
+                }else{
+                    hiddenContent.style.display = "none";
+                    centers_table.style.display = "block";
+                }
+                
+            });
+        </script>
+        <script>
+            function injectSvgSprite(path) {
+            
+                var ajax = new XMLHttpRequest();
+                ajax.open("GET", path, true);
+                ajax.send();
+                ajax.onload = function(e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+    </script>
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</body>
+
+</html>

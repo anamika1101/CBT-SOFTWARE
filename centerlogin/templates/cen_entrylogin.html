@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center Entry - CBT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 28px;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .sidebar-menu i {
+            width: 24px;
+            margin-right: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            margin: 20px 0;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+        }
+
+        .sidebar-footer button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.9);
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .sidebar-footer button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .sidebar-footer i {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 30px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dashboard-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .header-note {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .btn-primary-dash {
+            background: var(--primary);
+            color: white;
+            padding: 14px 26px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-dash:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            color: white;
+        }
+
+        .entry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            max-width: 980px;
+        }
+
+        .entry-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            min-height: 255px;
+        }
+
+        .entry-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 22px rgba(31, 41, 55, 0.1);
+        }
+
+        .entry-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 18px;
+        }
+
+        .entry-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.05;
+        }
+
+        .entry-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+        }
+
+        .entry-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            width: fit-content;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .card-dashboard .entry-icon {
+            background: rgba(59, 130, 246, 0.12);
+            color: #3b82f6;
+        }
+
+        .card-dashboard .entry-btn {
+            background: linear-gradient(135deg, #2596be, #2d8fb4);
+        }
+
+        .card-exam .entry-icon {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--success);
+        }
+
+        .card-exam .entry-btn {
+            background: linear-gradient(135deg, #34d399, #10b981);
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                min-height: auto;
+            }
+
+            .sidebar-footer {
+                position: static;
+                margin-top: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .dashboard-header h1 {
+                font-size: 30px;
+            }
+
+            .header-note {
+                font-size: 16px;
+            }
+
+            .btn-primary-dash {
+                font-size: 16px;
+                padding: 10px 16px;
+            }
+
+            .entry-title {
+                font-size: 34px;
+            }
+
+            .entry-desc {
+                font-size: 16px;
+            }
+
+            .entry-btn {
+                font-size: 16px;
+            }
+
+            .sidebar-logo { font-size: 24px; }
+        }
+    </style>
+    <script>
+        function openExamPortal() {
+            const url = "{% url 'studhome' %}";
+            const windowFeatures = "width=" + screen.width + ",height=" + screen.height + ",fullscreen=yes,scrollbars=no,location=no,menubar=no,toolbar=no,status=no,resizable=no";
+
+            const newWindow = window.open(url, "Exam Portal", windowFeatures);
+
+            if (newWindow) {
+                newWindow.focus();
+                newWindow.addEventListener("keydown", function (event) {
+                    const allowedKeys = [8];
+                    const isAllowed = allowedKeys.includes(event.keyCode);
+
+                    if (!(event.keyCode >= 48 && event.keyCode <= 57) && !isAllowed) {
+                        event.preventDefault();
+                    }
+                });
+            } else {
+                alert("Please disable your pop-up blocker to access the exam portal.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">CBT</div>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'cendashboard' %}"><i class="fas fa-chart-pie"></i>Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user-plus"></i>Student Registration</a></li>
+                <li><a href="#"><i class="fas fa-list-check"></i>Assign Exams</a></li>
+                <li><a href="#"><i class="fas fa-microscope"></i>Monitor Exams</a></li>
+                <li><a href="#"><i class="fas fa-users"></i>Student Status</a></li>
+                <li><a href="#"><i class="fas fa-clipboard-list"></i>Attendance</a></li>
+                <li><a href="#"><i class="fas fa-file-pdf"></i>Center Reports</a></li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <button id="logout" type="button">
+                    <i class="fas fa-right-from-bracket"></i>
+                    Logout
+                </button>
+                <script>
+                    var logoutUrl = "{% url 'cenlogout' %}";
+                </script>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div>
+                    <h1>Center Entry Portal</h1>
+                    <div class="header-note">Choose where to continue</div>
+                </div>
+                <button id="logoutTop" class="btn-primary-dash" type="button">logout</button>
+            </div>
+
+            <div class="entry-grid">
+                <div class="entry-card card-dashboard">
+                    <div class="entry-icon"><i class="fas fa-user"></i></div>
+                    <div class="entry-title">Dashboard</div>
+                    <div class="entry-desc">Open center dashboard</div>
+                    <a class="entry-btn" href="{% url 'cendashboard' %}">Go Dashboard</a>
+                </div>
+
+                <div class="entry-card card-exam">
+                    <div class="entry-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="entry-title">Exam Portal</div>
+                    <div class="entry-desc">Open exam window</div>
+                    <a class="entry-btn" href="#" onclick="openExamPortal(); return false;">Open Portal</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{% static 'js/logout.js' %}"></script>
+    <script>
+        document.getElementById("logoutTop")?.addEventListener("click", function () {
+            document.getElementById("logout")?.click();
+        });
+    </script>
+</body>
+</html>

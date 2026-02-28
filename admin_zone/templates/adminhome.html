@@ -1,0 +1,246 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin home</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+        .center-info-form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .form-field {
+            margin-bottom: 10px;
+        }
+
+        .form-field label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .form-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            background-color: rgb(50, 50, 225);
+             
+        }
+        hr{
+                height: 2px; /* Adjust the height as needed */
+                border-color: blue;
+                border-style: solid;
+        }
+        </style>
+        
+    </head>
+ 
+    <body>
+        <section class="main"> 
+            <div class="container mt-5 ">
+                <!-- HEADING -->
+                <div class="row" style="border: 2px solid; background-color: aqua;text-align:center;" >
+                    <div class="col-md-11">
+                        <h3 class="text-dark"style="font-size:30px; ">Welcome to Admin Home Page </h3><h1 style="color:red">{{Admin_data.name}}</h1>
+                    </div>
+                    <div class="col-md-1 mt-4">
+                        <a href="{% url 'adminlogout' %}"><button class="btn btn-danger" style="align-items: right;">Logout</button></a>
+                    </div>    
+                </div>
+                <!-- COMPANIES LIST DATA TABLE-->
+                <div class="row mt-3">
+                    <hr/>
+                    <table border="1" class="table table-bordered table-light">
+                        <thead class="td">
+                            <tr>
+                                <h2 style="font-size:30px;color:#ff555f; text-align: center;">List of Companies</h2>
+                            </tr>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for company in Companys %}
+                                <tr>
+                                    <td>{{ company.id   }}</td>
+                                    <td>{{ company.name }}</td>
+                                    <td>{{ company.email }}</td>
+                                    <td>{{ company.phone }}</td>
+                                    <td>{{ company.password }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- CONTACT DATA TABLE -->
+                <div class="row mt-4">
+                    <hr/>
+                    <table border="1" class="table table-bordered table-dark">
+                        <thead class="td">
+                            <tr>
+                                <h2 style="font-size:30px;color:#ff555f; text-align: center;">Contact Data</h2>
+                            </tr>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Organizations</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.id   }}</td>
+                                    <td>{{ contact.name }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.phone }}</td>
+                                    <td>{{ contact.organizations }}</td>
+                                    <td>{{ contact.message }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- CENTER LIST TABLE -->
+                <div class="row mt-4">
+                    <hr/>
+                    <table class="table table-bordered table-danger">
+                        <thead class="td">
+                            <tr>
+                                <h2 style="font-size:30px;color:#ff555f;text-align: center;">List of Centers<span><h5 style="color:black">(Added by company)</h5></span></h2>
+                            </tr>
+                            <tr>
+                                <th>Center Id</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Profile Pic</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for center in Centers %}
+                                <tr>
+                                    <td>{{ center.id   }}</td>
+                                    <td>{{ center.center_name }}</td>
+                                    <td>{{ center.address }}</td>
+                                    <td>{{ center.email }}</td>
+                                    <td>{{ center.phone }}</td>
+                                    <td>{{ center.profile_pic }}</td>
+                                    <td>{{ center.password }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TEST LIST TABLE -->
+                <div class="row mt-4">
+                    <hr/>
+                    <table class="table table-bordered table-success">
+                        <thead class="td">
+                            <tr>
+                                <h2 style="font-size:30px;color:#ff555f;text-align: center;">List of Tests</h2>
+                            </tr>
+                            <tr>
+                                <th>Test Id</th>
+                                <th>Name</th>
+                                <th>No of Questions</th>
+                                <th>Total Marks</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for test in Tests %}
+                                <tr>
+                                    <td>{{ test.id }}</td>
+                                    <td>{{ test.test_name }}</td>
+                                    <td>{{ test.no_of_questions }}</td>
+                                    <td>{{ test.total_marks }}</td>
+                                    <td><b>{{ test.status }} </b></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- ADD CENTER FORM -->
+                <div class="row">
+                    <h2 style="font-size:30px;color:blueviolet;text-align: center;">Add New Center in Center list.</h2><hr>     
+                    <form class="form" method="POST" action="{% url 'addcenter' %}">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <label for="centerCode">Center Code:</label>
+                            <input type="text" id="centerCode" name="centerCode">
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="centerName">Center Name:</label>
+                            <input type="text" id="centerName" name="centerName">
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" name="state">
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="place">Place:</label>
+                            <input type="text" id="place" name="place">
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="emailId">Email ID:</label>
+                            <input type="text" id="emailId" name="emailId">
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="contact">Contact:</label>
+                            <input type="text" id="contact" name="contact">
+                        </div>
+                
+                        <input type="submit" class="form-button" value="Submit">
+                    </form>
+                </div>               
+            </div>
+        </section>
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+            <i class="bi bi-arrow-up-short"></i>
+        </a>
+
+        <!-- Vendor JS Files -->
+        <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+        <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+        <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+        <!-- Template Main JS File -->
+        <script src="{% static 'assets/js/main.js' %}"></script>      
+    </body>
+</html>

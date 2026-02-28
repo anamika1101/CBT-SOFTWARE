@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Exam Centers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- Choices CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/choices.js/public/assets/styles/choices.min.css' %}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'vendor/overlayscrollbars/css/OverlayScrollbars.min.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'static/css/main.css' %}">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Favicon-->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    
+    
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            /* background-color: transparent; */
+        }
+       
+
+        /* CSS for the modal content */
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            background-color: black;
+            padding: 20px;
+            color: white;
+        }
+
+        /* CSS for the close arrow */
+        .close-arrow {
+            position: absolute;
+            top: 10px;
+            font-size: 40px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- header file -->
+    {% include 'com_header.html' %}
+    <!-- header close -->
+
+    <!-- main content -->
+    <div class="page " style="background-color: #232f3e"> <!-- include this line in every page -->
+        <div class="container offset-md-1">
+            <div class="row p-1" style="margin-top:10%;">
+
+
+                <form class="c">
+                    <label for="username" style="color: white;">Username:</label>
+                    <input type="text" id="username" name="username" placeholder=" username"><br><br>
+
+                    <label for="password" style="color: white;">Password:</label>
+                    <input type="password" id="password" name="password" placeholder=" password"><br><br>
+
+                    <input type="submit" value="Create password"> <br><br>
+
+                </form>
+                <button id="changePasswordButton" style="width: 180px;">Change Password</button>
+                <div id="changePasswordModal" class="modal">
+                    <div class="modal-content">
+                        <h2>Change Password</h2>
+                        <form>
+                            <label for="oldUsername">Old Password:</label>
+                            <input type="text" id="oldUsername" name="oldpassword" required><br><br>
+
+                            <label for="newPassword">New Password:</label>
+                            <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+                            <input type="submit" value="Submit">
+                        </form>
+                        <span class="close-arrow" id="closeChangePasswordModal">&times;</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--main close -->
+
+    <!-- JavaScript files-->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'vendor/just-validate/js/just-validate.min.js' %}"></script>
+    <script src="{% static 'vendor/choices.js/public/assets/scripts/choices.min.js'" %}></script>
+    <script src="{% static 'vendor/overlayscrollbars/js/OverlayScrollbars.min.js' %}"></script>
+    <script src="{% static 'js/charts-home.js' %}"></script>
+    <!-- Main File-->
+    <script src="{% static 'js/front.js'%}"></script>
+
+    <script>
+        // JavaScript to show and hide the change password modal
+        var changePasswordModal = document.getElementById("changePasswordModal");
+        var changePasswordButton = document.getElementById("changePasswordButton");
+        var closeChangePasswordArrow = document.getElementById("closeChangePasswordModal");
+
+        changePasswordButton.addEventListener("click", function () {
+            changePasswordModal.style.display = "block";
+        });
+
+        closeChangePasswordArrow.addEventListener("click", function () {
+            changePasswordModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target == changePasswordModal) {
+                changePasswordModal.style.display = "none";
+            }
+        });
+    </script>
+    <script>
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function (e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+    </script>
+
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</body>
+
+</html>

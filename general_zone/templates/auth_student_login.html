@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head_common.html" %}
+    <title>Student Login - CBT</title>
+  </head>
+  <body class="modern-ui">
+    {% include "header.html" %}
+
+    <section class="about main" style="background: var(--cbt-gradient-dark); padding: 100px 0 80px;">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="auth-modal" style="position:relative; max-width: 480px; margin:0 auto;">
+              <h2>Student Login</h2>
+              <p class="auth-modal-subtitle">Sign in to view and attempt exams.</p>
+              <!-- For now, this is a placeholder. Wire to real student auth when ready. -->
+              <form method="get" action="{% url 'studhome' %}">
+                <div class="auth-input-group">
+                  <label for="student_email">Email</label>
+                  <input type="email" id="student_email" name="email" placeholder="student@example.com" required>
+                </div>
+                <div class="auth-input-group">
+                  <label for="student_password">Password</label>
+                  <input type="password" id="student_password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn-primary">Continue to Exams</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="card" style="background: var(--cbt-bg-glass); border:1px solid var(--cbt-border); border-radius:20px;">
+              <div class="card-body" style="color: var(--cbt-text);">
+                <h4 class="mb-3" style="color: var(--cbt-primary-light);">Student Portal</h4>
+                <ul style="color: var(--cbt-text-muted);">
+                  <li>View available exams</li>
+                  <li>Attempt online CBT exams</li>
+                  <li>Submit answers and finish test safely</li>
+                  <li>Review your results (as implemented)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include "footer.html" %}
+  </body>
+</html>
+

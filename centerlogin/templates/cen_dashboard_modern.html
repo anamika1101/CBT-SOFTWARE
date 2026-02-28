@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center Dashboard - CBT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body { background: #f6f7fb; }
+        .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .sidebar { background: linear-gradient(180deg, #667eea, #764ba2); color: #fff; padding: 24px; }
+        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; }
+        .sidebar a:hover { background: rgba(255,255,255,.15); }
+        .main { padding: 24px; }
+        .card-box { border: 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+        .table th, .table td { vertical-align: middle; }
+        .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; }
+        @media (max-width: 992px) {
+            .layout { grid-template-columns: 1fr; }
+            .sidebar { position: sticky; top: 0; z-index: 2; }
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <aside class="sidebar">
+        <h4>Center Portal</h4>
+        <p class="mb-3">{{ center.center_name }}</p>
+        <a href="#students">Student Registration</a>
+        <a href="#assign">Assign Exams</a>
+        <a href="#monitor">Monitor Live</a>
+        <a href="#results">View Results</a>
+        <a href="#reports">View Reports</a>
+        <a href="{% url 'cenlogout' %}">Logout</a>
+    </aside>
+
+    <main class="main">
+        <h2 class="mb-3">Center Dashboard</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-3"><div class="card card-box p-3"><small>Students</small><h4>{{ stats.students }}</h4></div></div>
+            <div class="col-md-3"><div class="card card-box p-3"><small>Active Exams</small><h4>{{ stats.active_exams }}</h4></div></div>
+            <div class="col-md-3"><div class="card card-box p-3"><small>Conducted</small><h4>{{ stats.conducted }}</h4></div></div>
+            <div class="col-md-3"><div class="card card-box p-3"><small>Pass Rate</small><h4>{{ stats.pass_rate }}%</h4></div></div>
+        </div>
+
+        <section id="students" class="mb-4">
+            <div class="card card-box p-3">
+                <div class="section-title">Student Registration (Add, Edit, Delete)</div>
+
+                <form method="post" action="{% url 'center_add_student' %}" class="row g-2 mb-3">
+                    {% csrf_token %}
+                    <div class="col-md-2"><input class="form-control" name="roll_no" placeholder="Roll No" required></div>
+                    <div class="col-md-2"><input class="form-control" name="name" placeholder="Name" required></div>
+                    <div class="col-md-2"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
+                    <div class="col-md-2"><input class="form-control" name="phone" placeholder="Phone" required></div>
+                    <div class="col-md-2"><input class="form-control" name="course" placeholder="Course"></div>
+                    <div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add Student</button></div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm align-middle">
+                        <thead>
+                            <tr><th>Roll</th><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Status</th><th>Edit</th><th>Delete</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for s in students %}
+                            <tr>
+                                <form method="post" action="{% url 'center_edit_student' s.id %}">
+                                    {% csrf_token %}
+                                    <td>{{ s.roll_no }}</td>
+                                    <td><input class="form-control form-control-sm" name="name" value="{{ s.name }}" required></td>
+                                    <td><input class="form-control form-control-sm" name="email" value="{{ s.email }}" required></td>
+                                    <td><input class="form-control form-control-sm" name="phone" value="{{ s.phone }}" required></td>
+                                    <td><input class="form-control form-control-sm" name="course" value="{{ s.course }}"></td>
+                                    <td>
+                                        <select class="form-select form-select-sm" name="status">
+                                            <option value="ACTIVE" {% if s.status == 'ACTIVE' %}selected{% endif %}>Active</option>
+                                            <option value="INACTIVE" {% if s.status == 'INACTIVE' %}selected{% endif %}>Inactive</option>
+                                        </select>
+                                    </td>
+                                    <td><button class="btn btn-sm btn-warning" type="submit">Edit</button></td>
+                                </form>
+                                <td>
+                                    <form method="post" action="{% url 'center_delete_student' s.id %}" onsubmit="return confirm('Delete student?');">
+                                        {% csrf_token %}
+                                        <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="8" class="text-center">No students yet.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="assign" class="mb-4">
+            <div class="card card-box p-3">
+                <div class="section-title">Assign Exam</div>
+                <form method="post" action="{% url 'center_assign_exam' %}" class="row g-2 mb-3">
+                    {% csrf_token %}
+                    <div class="col-md-5">
+                        <select class="form-select" name="student_id" required>
+                            <option value="">Select Student</option>
+                            {% for s in students %}<option value="{{ s.id }}">{{ s.roll_no }} - {{ s.name }}</option>{% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-select" name="test_id" required>
+                            <option value="">Select Exam</option>
+                            {% for t in tests %}<option value="{{ t.id }}">{{ t.test_name }} ({{ t.total_marks }})</option>{% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2"><button class="btn btn-success w-100" type="submit">Assign</button></div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead><tr><th>Student</th><th>Exam</th><th>Status</th><th>Score</th><th>Assigned At</th></tr></thead>
+                        <tbody>
+                        {% for a in assignments %}
+                            <tr>
+                                <td>{{ a.student.name }}</td>
+                                <td>{{ a.test.test_name }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                                <td>{{ a.score }}/{{ a.test.total_marks }}</td>
+                                <td>{{ a.assigned_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="5" class="text-center">No assignments yet.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="monitor" class="mb-4">
+            <div class="card card-box p-3">
+                <div class="section-title">Monitor Live</div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead><tr><th>Student</th><th>Exam</th><th>Status</th><th>Start</th><th>Complete</th></tr></thead>
+                        <tbody>
+                        {% for a in monitor_rows %}
+                            <tr>
+                                <td>{{ a.student.name }}</td>
+                                <td>{{ a.test.test_name }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                                <td>
+                                    {% if a.status == 'ASSIGNED' %}
+                                        <form method="post" action="{% url 'center_update_assignment' a.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="action_type" value="start">
+                                            <button class="btn btn-sm btn-info" type="submit">Start Monitor</button>
+                                        </form>
+                                    {% else %}
+                                        {{ a.started_at|default:'-' }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if a.status != 'COMPLETED' %}
+                                        <form method="post" action="{% url 'center_update_assignment' a.id %}" class="d-flex gap-1">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="action_type" value="complete">
+                                            <input class="form-control form-control-sm" type="number" name="score" min="0" max="{{ a.test.total_marks }}" placeholder="Score" required>
+                                            <button class="btn btn-sm btn-primary" type="submit">Complete</button>
+                                        </form>
+                                    {% else %}
+                                        Completed
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="5" class="text-center">No active/in-progress exams.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="mb-4">
+            <div class="card card-box p-3">
+                <div class="section-title">View Results</div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead><tr><th>Student</th><th>Exam</th><th>Score</th><th>Started</th><th>Ended</th><th>Status</th></tr></thead>
+                        <tbody>
+                        {% for r in result_rows %}
+                            <tr>
+                                <td>{{ r.assignment.student.name }}</td>
+                                <td>{{ r.assignment.test.test_name }}</td>
+                                <td>{{ r.assignment.score }}/{{ r.assignment.test.total_marks }}</td>
+                                <td>{{ r.assignment.started_at|default:'-' }}</td>
+                                <td>{{ r.assignment.ended_at|default:'-' }}</td>
+                                <td>
+                                    {% if r.is_pass %}Pass{% else %}Fail{% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="6" class="text-center">No completed results yet.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="reports" class="mb-4">
+            <div class="card card-box p-3">
+                <div class="section-title">View Reports</div>
+                <div class="row g-3">
+                    <div class="col-md-3"><div class="border rounded p-3"><small>Total Assigned</small><h5>{{ report.total_assigned }}</h5></div></div>
+                    <div class="col-md-3"><div class="border rounded p-3"><small>Completed</small><h5>{{ report.total_completed }}</h5></div></div>
+                    <div class="col-md-3"><div class="border rounded p-3"><small>In Progress</small><h5>{{ report.total_in_progress }}</h5></div></div>
+                    <div class="col-md-3"><div class="border rounded p-3"><small>Avg Score</small><h5>{{ report.avg_score }}</h5></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
